@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templatePrincipal.xhtml">
+    <ui:define name="cabecalho">
+		<h2 align="center">Alterar Usuários</h2>
+	</ui:define>
+
+	<ui:define name="conteudo">
+		
+		<p:commandButton value="Voltar" update="@form"
+				action="/paginas/login/controle.xhtml"/>
+		<p:commandButton value="Vizualizar Referências" update="@form"
+				actionListener="#{LoginBean.pesquisar}"/>
+			<p:dataTable var="usuario" value="#{LoginBean.listaUsuarios}">
+			
+				<p:column headerText="Nome">
+					<h:outputText value="#{usuario.nome}" />
+				</p:column>
+
+				<p:column headerText="Email">
+					<h:outputText value="#{usuario.email}" />
+				</p:column>
+				
+				<p:column headerText="Telefones">
+				<ui:repeat var="telefones" value="#{usuario.telefones}">
+					<h:outputText value="#{telefones.numero}" />				
+				</ui:repeat>
+				</p:column>
+
+			</p:dataTable>
+				
+	</ui:define>
+
+</ui:composition>
+
+</html>
